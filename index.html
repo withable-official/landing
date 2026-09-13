@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>위더블 | 말씀으로 연결되는 일상</title>
+<meta name="description" content="성경 읽기, 묵상, 통독, 피드와 공동체를 한곳에. 위더블." />
+<style>
+:root{
+  --p:#8B73E6;
+  --p2:#A991F0;
+  --p3:#ECE7FF;
+  --p4:#F7F4FF;
+  --ink:#17151E;
+  --muted:#716C7C;
+  --line:#ECE8F3;
+  --bg:#FCFBFE;
+  --white:#fff;
+  --radius:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR","Segoe UI",sans-serif;letter-spacing:-.02em;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+header{position:fixed;inset:0 0 auto 0;height:74px;display:flex;align-items:center;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(236,232,243,.7)}
+.nav{display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:22px;font-weight:800;letter-spacing:-.06em;display:flex;align-items:center;gap:10px}
+.brand-mark{width:34px;height:34px;border-radius:12px;background:linear-gradient(145deg,#9A84EB,#7A62D6);display:grid;place-items:center;box-shadow:0 8px 18px rgba(125,98,214,.22)}
+.brand-mark svg{width:22px;height:22px}
+nav{display:flex;gap:34px;font-size:14px;color:#5F5A68;font-weight:600}
+nav a:hover{color:var(--p)}
+.top-cta{padding:11px 17px;border-radius:999px;background:#1B1821;color:#fff;font-size:13px;font-weight:700}
+.hero{position:relative;padding:152px 0 92px;background:
+radial-gradient(900px 480px at 88% 10%,#F0EBFF 0%,transparent 70%),
+linear-gradient(#fff,#FDFBFF)}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:90px;background:linear-gradient(180deg,transparent,#fff);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:74px;align-items:center}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--p);text-transform:uppercase}
+.hero h1{font-size:68px;line-height:1.08;letter-spacing:-.062em;margin:18px 0 24px;max-width:690px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#755CD0 0%,#9A7EEB 55%,#B493EE 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-desc{font-size:19px;line-height:1.75;color:var(--muted);max-width:590px;margin:0 0 30px}
+.actions{display:flex;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 22px;border-radius:999px;font-size:14px;font-weight:800}
+.btn.primary{background:var(--p);color:#fff;box-shadow:0 16px 32px rgba(139,115,230,.28)}
+.btn.secondary{background:#fff;border:1px solid var(--line)}
+.hero-note{margin-top:30px;display:flex;gap:11px;align-items:center;color:#675F70;font-size:13px}
+.hero-note i{width:34px;height:34px;border-radius:12px;background:var(--p4);display:grid;place-items:center;color:var(--p);font-style:normal}
+.hero-art{position:relative;height:650px}
+.glow{position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,#E9E2FF 0,#F6F2FF 52%,transparent 72%);left:50%;top:48%;transform:translate(-50%,-50%)}
+.phone{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(1.5deg);width:340px;height:680px;border-radius:46px;background:#121016;padding:9px;box-shadow:0 48px 100px rgba(68,54,116,.28)}
+.screen{height:100%;border-radius:38px;background:#fff;padding:27px 16px 74px;position:relative;overflow:hidden}
+.screen-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.screen-logo{font-size:18px;font-weight:800;letter-spacing:-.07em;color:#725CD1}
+.round{width:31px;height:31px;border-radius:50%;background:var(--p4);display:grid;place-items:center;color:var(--p);font-weight:700}
+.word-card{background:linear-gradient(145deg,#8068DA,#A68CF0);border-radius:24px;padding:24px 20px;color:#fff;box-shadow:0 18px 34px rgba(125,98,214,.23)}
+.word-card small{font-size:8px;letter-spacing:.13em;font-weight:700;opacity:.8}
+.word-card h3{font-size:21px;line-height:1.45;margin:11px 0 14px}
+.word-card p{font-size:9px;line-height:1.6;opacity:.82;margin:0}
+.word-pill{display:inline-flex;margin-top:15px;padding:7px 9px;border-radius:999px;background:rgba(255,255,255,.15);font-size:8px}
+.screen-title{display:flex;justify-content:space-between;align-items:center;margin:20px 4px 10px}
+.screen-title b{font-size:12px}
+.screen-title span{font-size:8px;color:#AAA4B1}
+.feed{border:1px solid #F0EDF5;border-radius:20px;padding:14px}
+.user{display:flex;gap:9px;align-items:center}
+.avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#F8D0E6,#B8A4F2)}
+.user b{display:block;font-size:10px}.user small{font-size:7px;color:#AAA4B0}
+.feed>p{font-size:9px;line-height:1.6;color:#5D5864}
+.quote{padding:9px 10px;background:#F8F5FF;border-radius:11px;color:#746C80;font-size:8px}
+.feed-meta{display:flex;gap:14px;margin-top:9px;font-size:8px;color:#9A94A0}
+.reading{border:1px solid #F0EDF5;border-radius:18px;padding:13px;margin-top:10px}
+.reading-head{display:flex;justify-content:space-between;font-size:9px}
+.progress{height:5px;background:#EFEAF6;border-radius:999px;margin-top:11px;overflow:hidden}
+.progress span{display:block;height:100%;width:62%;background:var(--p);border-radius:999px}
+.tabs{position:absolute;bottom:0;left:0;right:0;height:61px;background:#fff;border-top:1px solid #F1EDF5;display:flex;justify-content:space-around;align-items:center;font-size:8px;color:#A49EAA}
+.tabs b{color:var(--p)}
+.float-card{position:absolute;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.9);box-shadow:0 18px 50px rgba(81,65,137,.16);border-radius:19px;padding:13px 15px;display:flex;gap:10px;align-items:center;z-index:4}
+.float-card strong{display:block;font-size:11px}.float-card span{display:block;font-size:8px;color:#9A93A2;margin-top:3px}
+.fc1{left:-4px;top:150px}.fc2{right:-16px;bottom:120px}
+.iconbox{width:36px;height:36px;border-radius:12px;background:#F1ECFF;color:var(--p);display:grid;place-items:center;font-weight:800}
+.section{padding:118px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:50px}
+.section-head h2{font-size:46px;line-height:1.22;letter-spacing:-.055em;margin:12px 0 0}
+.section-head p{max-width:470px;color:var(--muted);line-height:1.75;font-size:15px;margin:0}
+.about-strip{padding:30px 0 0}
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;color:#797280;font-size:13px;font-weight:600}
+.strip i{color:#D4CEDC;font-style:normal}
+.bento{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}
+.card{border-radius:30px;border:1px solid var(--line);background:#fff;overflow:hidden}
+.card.purple{background:linear-gradient(145deg,#F8F5FF,#F1ECFF)}
+.card.large{min-height:620px;padding:36px;position:relative}
+.card.small{min-height:301px;padding:30px;position:relative}
+.stack{display:grid;gap:18px}
+.num{font-size:11px;color:var(--p);font-weight:800;letter-spacing:.14em}
+.card h3{font-size:27px;letter-spacing:-.045em;margin:10px 0}
+.card p{font-size:14px;color:var(--muted);line-height:1.7;max-width:500px}
+.scripture-box{position:absolute;left:36px;right:36px;bottom:36px;background:#fff;border-radius:24px;border:1px solid #E7E1F6;padding:28px;box-shadow:0 25px 55px rgba(94,72,165,.12)}
+.scripture-box small{font-size:10px;color:#8B8490}
+.scripture-box blockquote{font-size:21px;line-height:1.7;margin:20px 0 6px;font-weight:600}
+.highlight-line{height:13px;width:78%;background:rgba(169,145,240,.32);border-radius:4px;transform:translateY(-14px)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chips span{padding:8px 10px;background:#F6F2FF;color:#6E59C1;border-radius:999px;font-size:9px;font-weight:700}
+.donut{position:absolute;right:30px;bottom:25px;width:130px;height:130px;border-radius:50%;background:conic-gradient(var(--p) 0 68%,#EEE9F6 68%);display:grid;place-items:center}
+.donut:before{content:"";position:absolute;width:96px;height:96px;border-radius:50%;background:#fff}
+.donut div{position:relative;text-align:center}.donut strong{display:block;font-size:24px}.donut small{font-size:8px;color:#938C99}
+.people{position:absolute;right:28px;bottom:30px;display:flex}.people i{width:48px;height:48px;border-radius:50%;border:4px solid #fff;margin-left:-10px;box-shadow:0 6px 16px rgba(73,60,110,.08)}
+.people i:nth-child(1){background:linear-gradient(135deg,#F8D0C7,#E8A6B1)}
+.people i:nth-child(2){background:linear-gradient(135deg,#C8DFF7,#90AEDB)}
+.people i:nth-child(3){background:linear-gradient(135deg,#D7EEC9,#99C68D)}
+.people i:nth-child(4){background:linear-gradient(135deg,#F0D6F6,#B78BDD)}
+.verse{padding:26px 0 118px;background:#fff}
+.verse-panel{border-radius:38px;min-height:520px;background:linear-gradient(135deg,#6F58D1,#8B73E6 55%,#A68DF0);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:56px 30px;position:relative;overflow:hidden}
+.verse-panel:before,.verse-panel:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.14)}
+.verse-panel:before{width:380px;height:380px;left:-140px;bottom:-210px}
+.verse-panel:after{width:340px;height:340px;right:-120px;top:-180px}
+.verse-panel .kicker{color:#EDE8FF}
+.verse-panel blockquote{font-size:42px;line-height:1.5;font-weight:700;letter-spacing:-.05em;max-width:830px;margin:20px 0 10px}
+.verse-panel .ref{font-size:13px;opacity:.72}
+.verse-panel .meaning{max-width:620px;border-top:1px solid rgba(255,255,255,.2);padding-top:24px;margin-top:30px;font-size:14px;line-height:1.8;opacity:.88}
+.soft{background:#FAF9FD}
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:start}
+.vision-copy h2{font-size:45px;line-height:1.24;letter-spacing:-.055em;margin:12px 0 20px}
+.vision-copy p{font-size:15px;line-height:1.85;color:var(--muted)}
+.vision-list{display:grid;gap:14px}
+.vitem{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;display:grid;grid-template-columns:46px 1fr;gap:14px}
+.vnum{width:42px;height:42px;border-radius:14px;background:var(--p4);color:var(--p);display:grid;place-items:center;font-size:11px;font-weight:800}
+.vitem h3{margin:1px 0 6px;font-size:18px}.vitem p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.company-box{display:grid;grid-template-columns:1fr 1fr;gap:70px;padding:52px;border:1px solid var(--line);border-radius:34px;background:linear-gradient(145deg,#fff,#FBFAFE)}
+.company-box h2{font-size:40px;line-height:1.3;letter-spacing:-.05em;margin:12px 0 0}
+.company-copy p{font-size:14px;line-height:1.85;color:var(--muted);margin-top:0}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.tags span{font-size:10px;font-weight:700;color:#6655B2;background:#F3EFFF;padding:9px 11px;border-radius:999px}
+.cta{padding:32px 0 110px}
+.cta-box{background:#18151F;color:#fff;border-radius:38px;min-height:430px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:55px 25px;position:relative;overflow:hidden}
+.cta-box:before{content:"";position:absolute;width:520px;height:260px;border-radius:50%;background:rgba(139,115,230,.28);filter:blur(70px);top:-160px}
+.cta-box>*{position:relative}
+.cta-box h2{font-size:43px;line-height:1.3;letter-spacing:-.055em;margin:14px 0}
+.cta-box p{color:#B9B2C2;font-size:14px;margin-bottom:26px}
+.cta-box .btn.secondary{border-color:rgba(255,255,255,.2);background:transparent;color:#fff}
+footer{border-top:1px solid var(--line);padding:34px 0 42px}
+.footer{display:flex;justify-content:space-between;align-items:end}
+.footer p,.footer small{color:#8F8997;font-size:11px}.footer p{margin:10px 0 0}
+.footer-right{text-align:right;display:grid;gap:7px}.footer-right a{font-size:12px;color:#6C59BF;font-weight:700}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+@media(max-width:950px){
+ nav{display:none}.hero-grid{grid-template-columns:1fr}.hero-copy{text-align:center}.hero-desc{margin-left:auto;margin-right:auto}.actions{justify-content:center}.hero-note{justify-content:center}.hero-art{height:690px}
+ .section-head{display:block}.section-head p{margin-top:20px}.bento{grid-template-columns:1fr}.vision-grid,.company-box{grid-template-columns:1fr;gap:34px}
+}
+@media(max-width:620px){
+ .wrap{width:min(100% - 26px,1180px)}header{height:66px}.top-cta{font-size:11px;padding:9px 12px}.brand{font-size:19px}.brand-mark{width:30px;height:30px}
+ .hero{padding:110px 0 64px}.hero h1{font-size:43px}.hero-desc{font-size:15px}.actions{flex-direction:column}.actions .btn{width:100%}.hero-note{font-size:11px}
+ .hero-art{height:570px}.phone{width:285px;height:570px;border-radius:38px}.screen{border-radius:31px}.fc1{left:-8px;top:120px}.fc2{right:-10px;bottom:80px}.float-card{transform:scale(.86)}
+ .section{padding:84px 0}.section-head h2,.vision-copy h2,.company-box h2{font-size:31px}.section-head p{font-size:14px}
+ .card.large{min-height:560px;padding:24px}.card.small{padding:24px}.scripture-box{left:18px;right:18px;bottom:18px;padding:20px}.scripture-box blockquote{font-size:17px}
+ .donut{transform:scale(.82);transform-origin:right bottom}.people{transform:scale(.88);transform-origin:right bottom}
+ .verse{padding-bottom:84px}.verse-panel{min-height:470px;border-radius:30px;padding:44px 22px}.verse-panel blockquote{font-size:29px}
+ .company-box{padding:30px 24px}.cta{padding-bottom:84px}.cta-box{border-radius:30px}.cta-box h2{font-size:31px}.cta-box .actions{width:100%;max-width:280px}
+ .footer{display:block}.footer-right{text-align:left;margin-top:25px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M5 5.5h5.2c2.3 0 3.8 1.3 3.8 3.2V19c-.9-.8-2.1-1.3-3.8-1.3H5V5.5Z" stroke="white" stroke-width="1.55" stroke-linejoin="round"/>
+          <path d="M14 4.3V19M10.9 8h6.2" stroke="white" stroke-width="1.55" stroke-linecap="round"/>
+        </svg>
+      </span>
+      위더블
+    </a>
+    <nav>
+      <a href="#app">앱 소개</a><a href="#verse">주제 말씀</a><a href="#vision">비전</a><a href="#company">회사 소개</a>
+    </nav>
+    <a class="top-cta" href="mailto:support@withable.co.kr">문의하기</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <div class="kicker">WITHABLE · BIBLE COMMUNITY</div>
+      <h1>말씀을 읽는 시간에서<br><em>함께 살아가는 믿음으로.</em></h1>
+      <p class="hero-desc">성경을 읽고, 묵상하고, 기록하고, 함께 나누는 모든 순간. 위더블은 믿음의 일상을 자연스럽게 이어주는 성경 SNS입니다.</p>
+      <div class="actions">
+        <a class="btn primary" href="#app">위더블 둘러보기</a>
+        <a class="btn secondary" href="#vision">우리가 만드는 것</a>
+      </div>
+      <div class="hero-note"><i>✦</i><span>“세 겹 줄은 쉽게 끊어지지 아니하느니라” · 전도서 4:12</span></div>
+    </div>
+
+    <div class="hero-art reveal">
+      <div class="glow"></div>
+      <div class="phone">
+        <div class="screen">
+          <div class="screen-top"><span class="screen-logo">withable</span><span class="round">＋</span></div>
+          <div class="word-card">
+            <small>TODAY'S WORD</small>
+            <h3>오늘, 말씀 안에서<br>한 걸음 더 가까이</h3>
+            <p>마음에 남은 말씀을 기록하고<br>위디와 함께 나눠보세요.</p>
+            <span class="word-pill">요한복음 15:12</span>
+          </div>
+          <div class="screen-title"><b>오늘의 묵상</b><span>전체보기</span></div>
+          <div class="feed">
+            <div class="user"><span class="avatar"></span><div><b>다은</b><small>오늘 오전 8:24</small></div></div>
+            <p>오늘은 ‘서로 사랑하라’는 말씀이 오래 남았어요.</p>
+            <div class="quote">내가 너희를 사랑한 것 같이 너희도 서로 사랑하라.</div>
+            <div class="feed-meta"><span>♡ 24</span><span>기도했어요 8</span></div>
+          </div>
+          <div class="reading">
+            <div class="reading-head"><span>우리의 90일 성경통독</span><b>Day 34</b></div>
+            <div class="progress"><span></span></div>
+          </div>
+          <div class="tabs"><b>홈</b><span>성경</span><span>피드</span><span>통독</span><span>마이</span></div>
+        </div>
+      </div>
+      <div class="float-card fc1"><span class="iconbox">♡</span><div><strong>함께 묵상</strong><span>마음을 나누는 오늘</span></div></div>
+      <div class="float-card fc2"><span class="iconbox">✓</span><div><strong>통독 완료</strong><span>오늘도 함께 채웠어요</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="about-strip"><div class="wrap strip"><span>성경을 읽고</span><i>·</i><span>마음을 기록하고</span><i>·</i><span>서로 나누고</span><i>·</i><span>함께 끝까지</span></div></div>
+
+<section id="app" class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="kicker">THE APP</div><h2>신앙생활의 흐름을<br>하나의 앱 안에서.</h2></div>
+      <p>위더블은 기능을 많이 쌓는 앱이 아니라, 말씀을 읽은 순간부터 누군가와 함께 살아가는 순간까지 자연스럽게 이어지도록 설계합니다.</p>
+    </div>
+
+    <div class="bento">
+      <article class="card large purple reveal">
+        <span class="num">01 · BIBLE TO FEED</span>
+        <h3>말씀에서 바로 시작하는 나눔</h3>
+        <p>마음에 남은 구절을 형광펜으로 표시하고, 노트를 남기고, 바로 피드로 이어보세요.</p>
+        <div class="scripture-box">
+          <small>요한복음 15장</small>
+          <blockquote>내가 너희를 사랑한 것 같이<br>너희도 서로 사랑하라.</blockquote>
+          <div class="highlight-line"></div>
+          <div class="chips"><span>형광펜</span><span>노트</span><span>피드에 나누기</span></div>
+        </div>
+      </article>
+
+      <div class="stack">
+        <article class="card small reveal">
+          <span class="num">02 · READING TOGETHER</span>
+          <h3>혼자가 아닌 통독</h3>
+          <p>개인 통독부터 그룹 통독까지. 함께 읽고 서로의 걸음을 응원합니다.</p>
+          <div class="donut"><div><strong>68%</strong><small>함께 읽는 중</small></div></div>
+        </article>
+
+        <article class="card small reveal">
+          <span class="num">03 · CLOSE COMMUNITY</span>
+          <h3>내 사람들과 더 가까이</h3>
+          <p>위드, 위딩, 위디로 관계의 온도에 맞게 나눔의 깊이도 조절할 수 있어요.</p>
+          <div class="people"><i></i><i></i><i></i><i></i></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="verse" class="verse">
+  <div class="wrap">
+    <div class="verse-panel reveal">
+      <div class="kicker">OUR VERSE</div>
+      <blockquote>“한 사람이면 패하겠거니와 두 사람이면 맞설 수 있나니<br>세 겹 줄은 쉽게 끊어지지 아니하느니라”</blockquote>
+      <div class="ref">전도서 4:12</div>
+      <div class="meaning">혼자가 아닌 함께의 힘. 서로를 붙들고, 말씀 안에서 함께 자라는 것. 그것이 위더블이 만들고 싶은 연결입니다.</div>
+    </div>
+  </div>
+</section>
+
+<section id="vision" class="section soft">
+  <div class="wrap vision-grid">
+    <div class="vision-copy reveal">
+      <div class="kicker">OUR VISION</div>
+      <h2>말씀이 일상이 되고,<br>함께함이 힘이 되는 곳.</h2>
+      <p>우리는 신앙을 ‘혼자 잘하는 일’로 만들고 싶지 않습니다. 매일의 말씀과 묵상이 사람 사이를 연결하고, 그 연결이 다시 믿음의 지속성을 만드는 선순환을 꿈꿉니다.</p>
+      <p>위더블은 기술을 통해 신앙 공동체의 문턱을 낮추고, 더 많은 사람이 자연스럽게 말씀 가까이에 머무는 경험을 만들겠습니다.</p>
+    </div>
+    <div class="vision-list">
+      <article class="vitem reveal"><span class="vnum">01</span><div><h3>Faith in Daily Life</h3><p>말씀을 특별한 순간이 아닌 매일의 습관으로.</p></div></article>
+      <article class="vitem reveal"><span class="vnum">02</span><div><h3>Stronger Together</h3><p>서로의 믿음을 부담 없이 응원하고 함께 자라는 관계.</p></div></article>
+      <article class="vitem reveal"><span class="vnum">03</span><div><h3>Church, Reconnected</h3><p>교회와 공동체가 온라인에서도 따뜻하게 이어지는 경험.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="company" class="section">
+  <div class="wrap company-box reveal">
+    <div>
+      <div class="kicker">ABOUT WITHABLE</div>
+      <h2>사람과 말씀을 연결하는<br>작은 기술을 만듭니다.</h2>
+    </div>
+    <div class="company-copy">
+      <p>위더블은 성경을 더 자주 펼치고, 더 자연스럽게 나누며, 함께 믿음을 이어갈 수 있는 디지털 경험을 만드는 브랜드입니다.</p>
+      <p><b>with + able</b> — 함께라면 할 수 있다는 의미처럼, 우리의 제품이 누군가의 신앙 여정에 작지만 분명한 도움이 되기를 바랍니다.</p>
+      <div class="tags"><span>Faith Tech</span><span>Bible Experience</span><span>Community</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <div class="kicker" style="color:#DED6FF">COMING SOON</div>
+      <h2>말씀으로 연결되는<br>새로운 일상을 시작해보세요.</h2>
+      <p>위더블은 더 좋은 첫 만남을 위해 준비 중입니다.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:support@withable.co.kr">support@withable.co.kr</a>
+        <a class="btn secondary" href="#top">처음으로 ↑</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer">
+    <div>
+      <div class="brand"><span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 5.5h5.2c2.3 0 3.8 1.3 3.8 3.2V19c-.9-.8-2.1-1.3-3.8-1.3H5V5.5Z" stroke="white" stroke-width="1.55" stroke-linejoin="round"/><path d="M14 4.3V19M10.9 8h6.2" stroke="white" stroke-width="1.55" stroke-linecap="round"/></svg>
+      </span>위더블</div>
+      <p>함께라면, 믿음은 더 깊어집니다.</p>
+    </div>
+    <div class="footer-right"><a href="mailto:support@withable.co.kr">support@withable.co.kr</a><small>© 2026 WITHABLE. All rights reserved.</small></div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
